@@ -29,15 +29,23 @@ function map(str) {
 // console.log(map('bob'));
 
 function checkPerm(strA, strB) {
+  if(strA.length != strB.length) return false;
   var str1 = map(strA);
   var str2 = map(strB);
-  if(str1.length != str2.length) return false;
-  forEach(Key in str1) {
+  for (var key in str1) {
     if (key in str2){
       if(str1[key] != str2[key]) {
         return false;
-      } else { return false; }
-    }
+      }
+    } else { return false; }
   }
   return true;
 }
+
+//test cases
+console.log(checkPerm('bob', 'obb'))
+console.log(checkPerm('bob', 'bbo'))
+console.log(checkPerm('bob', 'boo'))
+console.log(checkPerm('aab', 'abc'))
+console.log(checkPerm('ab', 'abc'))
+console.log(checkPerm('abc', 'ab'))
