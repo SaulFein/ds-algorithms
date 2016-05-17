@@ -18,6 +18,8 @@ console.log(palindrome('hdoh'));
 console.log(palindrome('hh'));
 console.log(palindrome('cat'));
 console.log(palindrome('racecar'));
+console.log(palindrome('racescar'));
+
 
 
 //previous attempts
