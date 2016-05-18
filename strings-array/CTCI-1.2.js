@@ -32,7 +32,7 @@ function checkPerm(strA, strB) {
   if(strA.length != strB.length) return false;
   var str1 = map(strA);
   var str2 = map(strB);
-  for (var key in str1) {
+  for (key in str1) {
     if (key in str2){
       if(str1[key] != str2[key]) {
         return false;
