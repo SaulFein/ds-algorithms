@@ -68,28 +68,38 @@
 // console.log(sA);
 
 
-var stuff = [2, 3, 1, 6, 5];
-
-function SortedArray (array){
-  this.arr = {};
-  for(var i = 0; i < array.length; i++){
+function SortedArray (){
+  var self = this;
+  self.arr = {};
+  for(var i = 0; i < Object.keys(self.arr).length; i++){
     var pointer = -1;
-    this.arr[i] = array[i];
+    self.arr[i] = array[i];
   }
-  for(var i = 0; i < array.length; i++){
-    for(var j = i + 1; j < array.length; j++){
-      if (this.arr[i] > this.arr[j]) {
-        var less = this.arr[j];
-        var more = this.arr[i];
-        this.arr[i] = less;
-        this.arr[j] = more;
-        break;
+  self.sort = function () {
+    for(var i = 0; i < Object.keys(self.arr).length; i++){
+      for(var j = i + 1; j < Object.keys(self.arr).length; j++){
+        if (self.arr[i] > self.arr[j]) {
+          var less = self.arr[j];
+          var more = self.arr[i];
+          self.arr[i] = less;
+          self.arr[j] = more;
+          break;
+        }
       }
     }
+    return self.arr;
   }
-  return this.arr;
+  self.add = function(el) {
+    var insertPoint = Object.keys(self.arr).length;
+    self.arr[insertPoint] = el;
+    self.sort();
+  };
+  self.sort();
 }
-
-var sA = new SortedArray(stuff);
-
-console.log(sA);
+var sA = new SortedArray();
+sA.add(4);
+sA.add(2);
+sA.add(49);
+sA.add(1);
+sA.add(5);
+console.log(sA.arr);
