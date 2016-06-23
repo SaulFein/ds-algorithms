@@ -71,10 +71,6 @@
 function SortedArray (){
   var self = this;
   self.arr = {};
-  for(var i = 0; i < Object.keys(self.arr).length; i++){
-    var pointer = -1;
-    self.arr[i] = array[i];
-  }
   self.sort = function () {
     for(var i = 0; i < Object.keys(self.arr).length; i++){
       for(var j = i + 1; j < Object.keys(self.arr).length; j++){
@@ -102,4 +98,4 @@ sA.add(2);
 sA.add(49);
 sA.add(1);
 sA.add(5);
-console.log(sA.arr);
+console.log(sA);
