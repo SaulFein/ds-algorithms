@@ -66,36 +66,67 @@
 // var sA = new SortedArray(stuff);
 //
 // console.log(sA);
+/////////////////////////////////////////////////////////////////////////////
 
-
-function SortedArray (){
-  var self = this;
-  self.arr = {};
-  self.sort = function () {
-    for(var i = 0; i < Object.keys(self.arr).length; i++){
-      for(var j = i + 1; j < Object.keys(self.arr).length; j++){
-        if (self.arr[i] > self.arr[j]) {
-          var less = self.arr[j];
-          var more = self.arr[i];
-          self.arr[i] = less;
-          self.arr[j] = more;
-          break;
-        }
+// function SortedArray (){
+//   var self = this;
+//   self.arr = {};
+//   self.sort = function () {
+//     for(var i = 0; i < Object.keys(self.arr).length; i++){
+//       for(var j = i + 1; j < Object.keys(self.arr).length; j++){
+//         if (self.arr[i] > self.arr[j]) {
+//           var less = self.arr[j];
+//           var more = self.arr[i];
+//           self.arr[i] = less;
+//           self.arr[j] = more;
+//           break;
+//         }
+//       }
+//     }
+//     return self.arr;
+//   }
+//   self.add = function(el) {
+//     var insertPoint = Object.keys(self.arr).length;
+//     self.arr[insertPoint] = el;
+//     self.sort();
+//   };
+//   self.sort();
+// }
+// var sA = new SortedArray();
+// sA.add(4);
+// sA.add(2);
+// sA.add(49);
+// sA.add(1);
+// sA.add(5);
+// console.log(sA.arr);
+////////////////////////////////////////////////////////////////////////////
+function SortedArray() {
+  this.arr = [];
+  this.add = function(el) {
+    var shiftedVal = null;
+    for(var i = 0; i < this.arr.length; i++){
+      if(shiftedVal != null){
+        var tmp = this.arr[i];
+        this.arr[i] = shiftedVal;
+        shiftedVal = tmp;
+      }
+      if(el <= this.arr[i] && shiftedVal == null){
+        shiftedVal = this.arr[i];
+        this.arr[i] = el;
       }
     }
-    return self.arr;
+    if(shiftedVal != null) {
+      this.arr.push(shiftedVal);
+    } else {
+      this.arr.push(el);
+    }
   }
-  self.add = function(el) {
-    var insertPoint = Object.keys(self.arr).length;
-    self.arr[insertPoint] = el;
-    self.sort();
-  };
-  self.sort();
 }
+
 var sA = new SortedArray();
 sA.add(4);
 sA.add(2);
 sA.add(49);
 sA.add(1);
 sA.add(5);
-console.log(sA);
+console.log(sA.arr);
